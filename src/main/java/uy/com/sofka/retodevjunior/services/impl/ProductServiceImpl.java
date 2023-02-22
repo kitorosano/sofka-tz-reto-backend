@@ -32,4 +32,18 @@ public class ProductServiceImpl implements IProductService {
             Flux.fromStream(product.parallelStream())
         ));
   }
+  
+  @Override
+  public Mono<ProductDTO> findById(String id) {
+    return mapper.fromMonoEntity2MonoDTO(repository.findById(id));
+  }
+  
+  @Override
+  public Mono<ProductDTO> update(String id, ProductDTO productDTO) {
+    return mapper.fromMonoEntity2MonoDTO(repository.findById(id)
+        .flatMap(product ->
+            repository.save(mapper.fromDTO2Entity(productDTO, product))
+        ));
+  }
+  
 }

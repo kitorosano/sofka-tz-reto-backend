@@ -7,4 +7,6 @@ import uy.com.sofka.retodevjunior.dtos.ProductDTO;
 public interface IProductService {
   Mono<ProductDTO> save(ProductDTO dto);
   Flux<ProductDTO> findAll();
+  Mono<ProductDTO> findById(String id);
+  Mono<ProductDTO> update(String id, ProductDTO dto);
 }

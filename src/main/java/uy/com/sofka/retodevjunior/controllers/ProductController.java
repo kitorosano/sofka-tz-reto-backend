@@ -39,4 +39,25 @@ public class ProductController {
     return service.findAll();
   }
   
+  @GetMapping("/{id}")
+  @ApiOperation(value = "Find a product by id", notes = "Return a product by id")
+  @ApiResponses(value = {
+   @ApiResponse(code = 200, message = "OK"),
+   @ApiResponse(code = 404, message = "Not found")
+  })
+  public Mono<ProductDTO> findById(@PathVariable("id") String id) {
+    return service.findById(id);
+  }
+  
+  // ============ PUT ===================
+  @PutMapping("/{id}")
+  @ApiOperation(value = "Update a product", notes = "Update a product by id")
+  @ApiResponses(value = {
+   @ApiResponse(code = 200, message = "OK"),
+   @ApiResponse(code = 404, message = "Not found")
+  })
+  public Mono<ProductDTO> update(@PathVariable("id") String id, @RequestBody ProductDTO product) {
+    return service.update(id, product);
+  }
+  
 }
