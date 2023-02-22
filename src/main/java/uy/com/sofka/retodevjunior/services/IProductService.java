@@ -9,4 +9,6 @@ public interface IProductService {
   Flux<ProductDTO> findAll();
   Mono<ProductDTO> findById(String id);
   Mono<ProductDTO> update(String id, ProductDTO dto);
+  Mono<Void> delete(String id);
+  Mono<Void> deleteAll();
 }

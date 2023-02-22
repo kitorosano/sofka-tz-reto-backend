@@ -46,4 +46,13 @@ public class ProductServiceImpl implements IProductService {
         ));
   }
   
+  @Override
+  public Mono<Void> delete(String id) {
+    return repository.deleteById(id);
+  }
+  
+  @Override
+  public Mono<Void> deleteAll() {
+    return repository.deleteAll();
+  }
 }

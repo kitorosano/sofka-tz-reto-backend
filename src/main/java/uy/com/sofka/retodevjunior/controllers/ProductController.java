@@ -60,4 +60,24 @@ public class ProductController {
     return service.update(id, product);
   }
   
+  // ============ DELETE ===================
+  @DeleteMapping("/{id}")
+  @ApiOperation(value = "Delete a product", notes = "Delete a product by id")
+  @ApiResponses(value = {
+   @ApiResponse(code = 200, message = "OK"),
+   @ApiResponse(code = 404, message = "Not found")
+  })
+  public Mono<Void> delete(@PathVariable("id") String id) {
+    return service.delete(id);
+  }
+  
+  @DeleteMapping("")
+  @ApiOperation(value = "Delete all products", notes = "Delete all products")
+  @ApiResponses(value = {
+   @ApiResponse(code = 200, message = "OK"),
+  })
+  public Mono<Void> deleteAll() {
+    return service.deleteAll();
+  }
+  
 }
