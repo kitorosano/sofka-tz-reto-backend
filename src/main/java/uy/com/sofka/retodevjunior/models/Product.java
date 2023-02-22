@@ -14,7 +14,7 @@ public class Product {
   private Integer inventory;
   private Integer min;
   private Integer max;
-  private Boolean enabled;
+  private Boolean enabled = true;
  
   public String getId() {
     return this.id;

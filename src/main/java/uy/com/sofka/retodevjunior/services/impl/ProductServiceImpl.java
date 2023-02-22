@@ -3,6 +3,7 @@ package uy.com.sofka.retodevjunior.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import uy.com.sofka.retodevjunior.dtos.ProductDTO;
 import uy.com.sofka.retodevjunior.mappers.ProductMapper;
 import uy.com.sofka.retodevjunior.repositories.IProductRepository;
@@ -17,11 +18,18 @@ public class ProductServiceImpl implements IProductService {
   ProductMapper mapper = new ProductMapper();
   
   @Override
+  public Mono<ProductDTO> save(ProductDTO productDTO) {
+    return mapper.fromMonoEntity2MonoDTO(repository.save(
+        mapper.fromDTO2Entity(productDTO))
+    );
+  } // DTO -> ENTITY -> |SAVE| -> MONO<ENTITY> -> MONO<DTO> -> |RETURN|
+  
+  @Override
   public Flux<ProductDTO> findAll() {
     return mapper.fromFluxEntity2FluxDTO(repository.findAll()
         .buffer(100)
-        .flatMap(producto ->
-            Flux.fromStream(producto.parallelStream())
+        .flatMap(product ->
+            Flux.fromStream(product.parallelStream())
         ));
   }
 }
