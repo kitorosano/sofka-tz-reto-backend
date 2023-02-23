@@ -44,20 +44,49 @@ public class ProductDTO {
   public void setName(String name) {
     // verificar que no sea null o vacio
     if (name == null || name.isEmpty())
-      throw new IllegalArgumentException("El name no puede ser vacio o nulo");
+      throw new IllegalArgumentException("Name must not be null or empty");
     this.name = name;
   }
   public void setInventory(Integer inventory) {
     // verificar que no sea null
     if (inventory == null)
-      throw new IllegalArgumentException("El inventory no puede ser nulo");
+      throw new IllegalArgumentException("Inventory must not be null");
     // verificar que no sea menor a min o mayor a max
-    if (inventory < this.min)
-      throw new IllegalArgumentException("El inventory esta superando el minimo permitido");
-    if (inventory > this.max)
-      throw new IllegalArgumentException("El inventory esta superando el maximo permitido");
+    if (inventory <= this.min)
+      throw new IllegalArgumentException("Inventory must no be less than min");
+    if (inventory >= this.max)
+      throw new IllegalArgumentException("Inventory must no be greater than max");
     this.inventory = inventory;
   }
+  
+  public void addInventory(Integer quantity) {
+    // verificar que no sea null
+    if (quantity == null)
+      throw new IllegalArgumentException(" quantity must not be null");
+    // verificar que no sea menor a min o mayor a max
+    if (this.inventory + quantity <= this.min)
+      throw new IllegalArgumentException(" quantity must no be less than current inventory and shouldn't let the inventory go below the minimum");
+    if (this.inventory + quantity >= this.max)
+      throw new IllegalArgumentException(" quantity must no be greater than current inventory and shouldn't let the inventory go above the maximum");
+    this.inventory += quantity;
+  }
+  
+  public void removeInventory(Integer quantity) {
+    // verificar que no sea null
+    if (quantity == null)
+      throw new IllegalArgumentException(" quantity must not be null");
+    // verificar que no sea menor a min o mayor a max
+    if (this.inventory - quantity <= this.min)
+      throw new IllegalArgumentException(" quantity must no be less than current inventory and shouldn't let the inventory go below the minimum");
+    if (this.inventory - quantity >= this.max)
+      throw new IllegalArgumentException(" quantity must no be greater than current inventory and shouldn't let the inventory go above the maximum");
+    this.inventory -= quantity;
+  }
+  
+  public void toggleEnabled() {
+    this.enabled = !this.enabled;
+  }
+  
   public void setMin(Integer min) {
     // verificar que si es nulo o negativo que sea 0
     if (min == null || min < 0)

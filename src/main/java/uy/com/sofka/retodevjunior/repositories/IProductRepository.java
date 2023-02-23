@@ -1,8 +1,10 @@
 package uy.com.sofka.retodevjunior.repositories;
 
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 import uy.com.sofka.retodevjunior.models.Product;
 
-public interface IProductRepository extends ReactiveMongoRepository<Product, String> {
+@Repository
+public interface IProductRepository extends MongoRepository<Product, String> {
 
 }

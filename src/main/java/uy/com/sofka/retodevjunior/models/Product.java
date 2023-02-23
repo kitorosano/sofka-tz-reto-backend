@@ -49,6 +49,16 @@ public class Product {
   public void setInventory(Integer inventory) {
     this.inventory = inventory;
   }
+  public void addInventory(Integer inventory) {
+    this.inventory += inventory;
+  }
+  public void removeInventory(Integer inventory) {
+    this.inventory -= inventory;
+  }
+  
+  public void toggleEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
   public void setMin(Integer min) {
     this.min = min;
   }
