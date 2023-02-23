@@ -16,3 +16,7 @@ Debera de contar con una instancia de mongodb en local funcionando en el puerto 
 
 http://localhost:8080/swagger-ui/index.html
 http://localhost:8080/v2/api-docs
+
+- - -
+La coleccion de Postman se encuentra en la raiz del proyecto
+- - -

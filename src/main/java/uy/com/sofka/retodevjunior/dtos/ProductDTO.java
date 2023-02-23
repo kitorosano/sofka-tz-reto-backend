@@ -52,9 +52,9 @@ public class ProductDTO {
     if (inventory == null)
       throw new IllegalArgumentException("Inventory must not be null");
     // verificar que no sea menor a min o mayor a max
-    if (inventory <= this.min)
+    if (inventory < this.min)
       throw new IllegalArgumentException("Inventory must no be less than min");
-    if (inventory >= this.max)
+    if (inventory > this.max)
       throw new IllegalArgumentException("Inventory must no be greater than max");
     this.inventory = inventory;
   }
@@ -64,9 +64,9 @@ public class ProductDTO {
     if (quantity == null)
       throw new IllegalArgumentException(" quantity must not be null");
     // verificar que no sea menor a min o mayor a max
-    if (this.inventory + quantity <= this.min)
+    if (this.inventory + quantity < this.min)
       throw new IllegalArgumentException(" quantity must no be less than current inventory and shouldn't let the inventory go below the minimum");
-    if (this.inventory + quantity >= this.max)
+    if (this.inventory + quantity > this.max)
       throw new IllegalArgumentException(" quantity must no be greater than current inventory and shouldn't let the inventory go above the maximum");
     this.inventory += quantity;
   }
@@ -76,9 +76,9 @@ public class ProductDTO {
     if (quantity == null)
       throw new IllegalArgumentException(" quantity must not be null");
     // verificar que no sea menor a min o mayor a max
-    if (this.inventory - quantity <= this.min)
+    if (this.inventory - quantity < this.min)
       throw new IllegalArgumentException(" quantity must no be less than current inventory and shouldn't let the inventory go below the minimum");
-    if (this.inventory - quantity >= this.max)
+    if (this.inventory - quantity > this.max)
       throw new IllegalArgumentException(" quantity must no be greater than current inventory and shouldn't let the inventory go above the maximum");
     this.inventory -= quantity;
   }
