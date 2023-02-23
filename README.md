@@ -11,12 +11,10 @@ Para conocer más sobre el proyecto, por favor considerar leer el documento prop
 ## Guia de ejecución
 
 Debera de contar con una instancia de mongodb en local funcionando en el puerto 27017, de lo contrario debera de modificar el archivo application.properties y cambiar la propiedad spring.data.mongodb.uri por la dirección de su instancia de mongodb.
+Una vez ejecutado el proyecto, se debera de utilizar postman para realizar las peticiones a la api, o bien, se puede utilizar swagger para ver la documentación de la api.
+La coleccion de Postman se encuentra en la raiz del proyecto
 
 ### Swagger
 
 http://localhost:8080/swagger-ui/index.html
 http://localhost:8080/v2/api-docs
-
-- - -
-La coleccion de Postman se encuentra en la raiz del proyecto
-- - -
