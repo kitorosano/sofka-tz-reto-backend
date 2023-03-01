@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import uy.com.sofka.retodevjunior.dtos.BoughtProductDTO;
 import uy.com.sofka.retodevjunior.dtos.BuyDTO;
 import uy.com.sofka.retodevjunior.dtos.ProductDTO;
 import uy.com.sofka.retodevjunior.services.IBuyService;
@@ -13,6 +14,7 @@ import uy.com.sofka.retodevjunior.services.IProductService;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.List;
 
 @SpringBootTest
 public class BuyServiceTest {
@@ -42,15 +44,17 @@ public class BuyServiceTest {
     product2.setIsEnabled(true);
     productService.save(product2);
     
+    
+    
     BuyDTO buy = new BuyDTO();
     buy.setClientName("Client");
     buy.setClientId("123");
     buy.setClientIdType("CC");
     buy.setDate(LocalDateTime.now());
     buy.setProducts(
-      Map.of(
-        "x1", 1,
-        "x2", 3
+      List.of(
+          new BoughtProductDTO(product1, 3),
+          new BoughtProductDTO(product2, 2)
       )
     );
     ////Act

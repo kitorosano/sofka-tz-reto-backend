@@ -2,9 +2,11 @@ package uy.com.sofka.retodevjunior.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import uy.com.sofka.retodevjunior.dtos.BoughtProductDTO;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.List;
 import java.util.UUID;
 
 @Document(collection = "buys")
@@ -15,7 +17,7 @@ public class Buy {
   private String clientIdType;
   private String clientId;
   private LocalDateTime date = LocalDateTime.now();
-  private Map<String, Integer> products;
+  private List<BoughtProductDTO> products;
   
   public String getId() {
     return id;
@@ -57,11 +59,11 @@ public class Buy {
     this.date = date;
   }
   
-  public Map<String, Integer> getProducts() {
+  public List<BoughtProductDTO> getProducts() {
     return products;
   }
   
-  public void setProducts(Map<String, Integer> products) {
+  public void setProducts(List<BoughtProductDTO> products) {
     this.products = products;
   }
   

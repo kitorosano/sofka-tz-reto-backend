@@ -33,7 +33,6 @@ public class BuyController {
   })
   public ResponseEntity<?> create(@RequestBody BuyDTO dto) {
     try {
-      System.out.println("BuyController.create");
       BuyDTO savedDTO = service.save(dto);
       return new ResponseEntity<BuyDTO>(savedDTO, HttpStatus.CREATED);
     } catch (IllegalArgumentException e) {

@@ -2,6 +2,7 @@ package uy.com.sofka.retodevjunior.dtos;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.List;
 
 public class BuyDTO {
   private String id;
@@ -9,7 +10,7 @@ public class BuyDTO {
   private String clientIdType;
   private String clientId;
   private LocalDateTime date = LocalDateTime.now();
-  private Map<String, Integer> products;
+  private List<BoughtProductDTO> products;
   
   public BuyDTO() {
   }
@@ -60,11 +61,11 @@ public class BuyDTO {
     this.date = date;
   }
   
-  public Map<String, Integer> getProducts() {
+  public List<BoughtProductDTO> getProducts() {
     return products;
   }
   
-  public void setProducts(Map<String, Integer> products) {
+  public void setProducts(List<BoughtProductDTO> products) {
     this.products = products;
   }
 }

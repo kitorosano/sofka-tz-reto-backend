@@ -3,6 +3,7 @@ package uy.com.sofka.retodevjunior.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import uy.com.sofka.retodevjunior.dtos.BoughtProductDTO;
 import uy.com.sofka.retodevjunior.dtos.BuyDTO;
 import uy.com.sofka.retodevjunior.dtos.BuyListDTO;
 import uy.com.sofka.retodevjunior.dtos.ProductDTO;
@@ -28,9 +29,9 @@ public class BuyServiceImpl implements IBuyService {
   
   @Override
   public BuyDTO save(BuyDTO buyDTO) {
-    for (Map.Entry<String, Integer> entry : buyDTO.getProducts().entrySet()) {
-      var productId = entry.getKey();
-      var quantity = entry.getValue();
+    buyDTO.getProducts().forEach(boughtProduct -> {
+      var productId = boughtProduct.getId();
+      var quantity = boughtProduct.getQuantity();
       Optional<Product> product = productRepository.findById(productId);
       if(product.isPresent()) {
         ProductDTO productDTO = productMapper.fromEntity2DTO(product.get());
@@ -44,11 +45,11 @@ public class BuyServiceImpl implements IBuyService {
       } else {
         throw new IllegalArgumentException("Product not found");
       }
-    }
+    });
     // Now we can save the removes from the inventories because we know that there is the required stock
-    for (Map.Entry<String, Integer> entry : buyDTO.getProducts().entrySet()) {
-      var productId = entry.getKey();
-      var quantity = entry.getValue();
+    buyDTO.getProducts().forEach(boughtProduct -> {
+      var productId = boughtProduct.getId();
+      var quantity = boughtProduct.getQuantity();
       
       Optional<Product> product = productRepository.findById(productId);
       if(product.isPresent()) {
@@ -56,7 +57,8 @@ public class BuyServiceImpl implements IBuyService {
         productDTO.removeInventory(quantity);
         productRepository.save(productMapper.fromDTO2Entity(productDTO));
       }
-    }
+    });
+    
     return buyMapper.fromEntity2DTO(
         buyRepository.save(
             buyMapper.fromDTO2Entity(buyDTO)
